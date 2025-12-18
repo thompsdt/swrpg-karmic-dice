@@ -1,0 +1,37 @@
+{
+  "id": "swrpg-karmic-dice",
+  "title": "SWRPG Karmic Dice",
+  "description": "Infrastructure for intercepting and adjusting narrative dice in the Star Wars FFG system.",
+  "version": "1.0.0",
+ 
+  "compatibility": {
+    "minimum": "12",
+    "verified": "12"
+  },
+  "authors": [
+    {
+      "name": "l0ngj0hnj0e"
+    }
+  ],
+  "esmodules": [
+    "scripts/module.js"
+  ],
+  "styles": [
+    "styles/karmic-dice.css"
+  ],
+  "relationships": {
+    "systems": [
+      {
+        "id": "starwarsffg",
+        "type": "system",
+        "compatibility": {
+          "minimum": "1.9.0"
+        }
+      }
+    ]
+  },
+  "socket": false,
+  "url": "https://github.com/thompsdt/swrpg-karmic-dice",
+  "manifest": "https://github.com/thompsdt/swrpg-karmic-dice/releases/latest/download/module.json",
+  "download": "https://github.com/thompsdt/swrpg-karmic-dice/releases/latest/download/swrpg-karmic-dice.zip"
+}

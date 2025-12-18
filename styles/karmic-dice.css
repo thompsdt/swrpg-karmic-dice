@@ -1,0 +1,182 @@
+/* Slight inset from the roll card edges + cleaner breathing room */
+.karmic-dice-separator {
+  margin: 6px 6px 0 6px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.karmic-dice-details {
+  margin: 0 6px 8px 6px;
+  padding-top: 0;
+  border-top: none;
+}
+
+.karmic-dice-summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  user-select: none;
+  padding: 2px 2px;
+}
+
+.karmic-dice-summary i {
+  opacity: 0.85;
+}
+
+.karmic-dice-pill {
+  margin-left: auto;
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.karmic-dice-body {
+  margin-top: 6px;
+  padding: 8px 10px 10px 10px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.karmic-dice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.karmic-dice-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 6px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.karmic-die-name {
+  font-weight: 600;
+  opacity: 0.92;
+  white-space: nowrap;
+}
+
+.karmic-die-change {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.karmic-die-face {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.karmic-face-text {
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.95;
+  line-height: 1.2;
+}
+
+.karmic-arrow {
+  opacity: 0.7;
+}
+/* separator is defined above with insets */
+
+.karmic-caret::before {
+  content: "▸";
+  display: inline-block;
+  width: 14px;
+  opacity: 0.85;
+}
+
+.karmic-dice-details[open] .karmic-caret::before {
+  content: "▾";
+}
+
+/* --- Karmic Dice: screenshot-style list --- */
+.karmic-dice-details,
+.karmic-dice-body {
+  box-sizing: border-box;
+}
+
+.karmic-dice-summary {
+  width: 100%;
+  position: relative;
+  z-index: 2; /* helps if the system has overlays inside the roll card */
+}
+
+/* Grouped list layout (matches your screenshot) */
+.karmic-dice-groups {
+  margin: 6px 0 0 14px;
+  padding: 0;
+}
+
+.karmic-dice-group {
+  margin: 2px 0;
+}
+
+.karmic-dice-group-title {
+  margin: 0 0 2px 0;
+}
+
+.karmic-dice-changes {
+  margin: 2px 0 0 14px;
+  padding: 0;
+}
+
+.karmic-dice-change {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;      /* keep “old → new” on one line */
+  white-space: nowrap;
+  min-width: 0;
+}
+
+/* Prevent label wrapping; if a label is unusually long, truncate gracefully */
+.karmic-dice-change .karmic-face-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.karmic-dice-change .karmic-die-face {
+  width: 18px;
+  height: 18px;
+}
+
+.karmic-avg-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.25rem 0 0.35rem;
+}
+
+.karmic-avg-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.karmic-avg-table th,
+.karmic-avg-table td {
+  padding: 4px 6px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  vertical-align: top;
+}
+
+.karmic-avg-cell {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.karmic-avg-n {
+  opacity: 0.8;
+  margin-left: 0.25rem;
+  font-size: 0.9em;
+}
+
