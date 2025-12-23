@@ -398,6 +398,18 @@ const affinityRows = actors.length ? `
     </div>
 
     <div class="form-group">
+  <label>Enable Force Die Karma</label>
+  <div class="form-fields">
+    <input type="checkbox" name="forceKarmaEnabled"
+      ${game.settings.get(MODULE_ID, KARMIC_SETTINGS.forceKarmaEnabled) ? "checked" : ""}/>
+  </div>
+  <p class="hint">
+    If disabled, Force dice are never adjusted by karma (but results are still tracked).
+  </p>
+</div>
+
+
+    <div class="form-group">
       <label>Debug Logging (this client)</label>
       <div class="form-fields">
         <input type="checkbox" name="debug" ${current.debug ? "checked" : ""}/>
@@ -633,6 +645,14 @@ dlg.render(true);
 
     const enabled = !!fd.get("enabled");
     const debug = !!fd.get("debug");
+
+    const forceKarmaEnabled = !!fd.get("forceKarmaEnabled");
+await game.settings.set(
+  MODULE_ID,
+  KARMIC_SETTINGS.forceKarmaEnabled,
+  forceKarmaEnabled
+);
+
 
     const windowSize = Math.max(1, Math.floor(toNum("windowSize", 50)));
     const minSamples = Math.max(0, Math.floor(toNum("minSamples", 10)));
@@ -1224,15 +1244,14 @@ function computeBiasForDenom(ctx, denom) {
 /* ------------------------------------------------------------------------- */
 
 function applyKarmaFace(denom, face, faces) {
-  const ctx = _currentCtx();
-  if (!ctx) {
-    if (isDebug()) {
-      kdDbg("noctx", `NO_CTX die=${normalizeDenom(denom)} face=${face} (evaluate patch not active)`);
-      // show a short stack a few times to find the true caller
-      try { kdDbg("noctx:stack", "NO_CTX stack:\n" + (new Error().stack || ""), 3); } catch {}
-    }
-    return face;
-  }
+// Always track Force faces, even when no adjustment happens
+const ctx = _currentCtx();
+if (ctx) {
+  const d = normalizeDenom(denom);
+  if (!ctx.facesByDenom.has(d)) ctx.facesByDenom.set(d, []);
+  ctx.facesByDenom.get(d).push(face);
+}
+
 
   // only operate inside roll-batching context
 
